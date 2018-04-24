@@ -12,14 +12,14 @@ func (category *Category) InsertCategory() (insertId int64, err error) {
 	sqlStmt := "INSERT INTO category (category_id,category_name) VALUES (?,?)"
 	stmt, err := Db.Prepare(sqlStmt)
 	if err != nil {
-		panic(err)
+		return
 	}
 
 	defer stmt.Close()
 
 	result, err := stmt.Exec(category.CategoryId, category.CategoryName)
 	if err != nil {
-		panic(err)
+		return
 	}
 	insertId, err = result.LastInsertId()
 	return
@@ -30,7 +30,7 @@ func SelectCategorys() (categorys []Category, err error) {
 	sqlStmt := "SELECT category_id,category_name FROM category"
 	stmt, err := Db.Prepare(sqlStmt)
 	if err != nil {
-		panic(err)
+		return
 	}
 
 	defer stmt.Close()

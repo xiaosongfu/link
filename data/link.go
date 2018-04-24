@@ -16,14 +16,14 @@ func (link *Link) InsertLink() (insertId int64, err error) {
 	sqlStmt := "INSERT INTO link (url,category_id,tag) VALUES (?,?,?)"
 	stmt, err := Db.Prepare(sqlStmt)
 	if err != nil {
-		panic(err)
+		return
 	}
 
 	defer stmt.Close()
 
 	result, err := stmt.Exec(link.Url, link.CategoryId, link.Tag)
 	if err != nil {
-		panic(err)
+		return
 	}
 
 	insertId, err = result.LastInsertId()
@@ -35,7 +35,7 @@ func SelectLinks() (links []Link, err error) {
 	sqlStmt := "SELECT id,url,category_id,tag FROM link"
 	stmt, err := Db.Prepare(sqlStmt)
 	if err != nil {
-		panic(err)
+		return
 	}
 
 	defer stmt.Close()
@@ -59,7 +59,7 @@ func SelectLinksByCategoryId(categoryId int) (links []Link, err error) {
 	sqlStmt := "SELECT id,url,category_id,tag FROM link WHERE category_id=?"
 	stmt, err := Db.Prepare(sqlStmt)
 	if err != nil {
-		panic(err)
+		return
 	}
 
 	defer stmt.Close()
