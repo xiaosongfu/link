@@ -2,7 +2,7 @@ package data
 
 // Category struct
 type Category struct {
-	Id           int    `json:"Id"`
+	Id           int    `json:"id"`
 	CategoryId   int    `json:"categoryId"`
 	CategoryName string `json:"categoryName"`
 }
