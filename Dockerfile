@@ -1,9 +1,12 @@
-FROM centos:latest
+FROM golang:latest
 
-RUN yum update
+WORKDIR /go/src/app
 
-WORKDIR /app
+COPY . .
 
-COPY ./link /app/link
+RUN go get -v -u ./...
 
-CMD ["/app/link"]
+RUN go clean
+RUN GOOS=linux GOARCH=amd64 go build
+
+CMD ["link"]
