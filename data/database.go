@@ -17,7 +17,7 @@ var Db *sql.DB
 
 func init() {
 	var err error
-	Db, err = sql.Open("mysql", "root:link@(192.168.160.3:43306)/link?charset=utf8")
+	Db, err = sql.Open("mysql", "root:link@(120.77.47.141:43306)/link?charset=utf8")
 	if err != nil {
 		panic(err)
 	}
