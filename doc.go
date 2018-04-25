@@ -34,5 +34,14 @@
     params：categoryId
  备注：如果没有传 categoryId 或为 ""，则使用默认的 categoryId
 //---------------------------
+ 交叉编译命令
+ * GOOS=linux GOARCH=amd64 go build
+ *
+ * GOOS：386、amd64、arm
+ * GOARCH：darwin、freebsd、linux、windows
+
+ 上传命令
+ * scp ./link root@120.77.47.141:/usr/local/link
+//---------------------------
 */
 package main
