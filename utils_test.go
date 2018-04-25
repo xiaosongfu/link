@@ -50,3 +50,46 @@ func TestQueryLinkTitle(t *testing.T) {
 		}
 	}
 }
+
+func TestIsCorrectUrl(t *testing.T) {
+	urls := []string{
+		"http://www.flysnow.org/2018/02/09/go-regexp-extract-text.html",
+		"https://juejin.im/post/5addcfd76fb9a07aa349df55",
+		"juejin.im/post/5addcfd76fb9a07aa349df55",
+		"",
+	}
+
+	matchs := []bool{
+		true,
+		true,
+		false,
+		false,
+	}
+
+	for index, url := range urls {
+		match := IsCorrectUrl(url)
+		if match != matchs[index] {
+			t.Error("is not correct url")
+		}
+	}
+}
+
+func TestStringIsEmpty(t *testing.T) {
+	strs := []string{
+		"",
+		"asb",
+		"是",
+	}
+
+	res := []bool{
+		true,
+		false,
+		false,
+	}
+
+	for index, str := range strs {
+		if res[index] != StringIsEmpty(str) {
+			t.Error("wrong!")
+		}
+	}
+}

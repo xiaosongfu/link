@@ -32,7 +32,6 @@
 	api：/api/v1/getLinksByCategoryId
 	method: get
     params：categoryId
- 备注：如果没有传 categoryId 或为 ""，则使用默认的 categoryId
 //---------------------------
  交叉编译命令
  * GOOS=linux GOARCH=amd64 go build
