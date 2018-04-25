@@ -1,16 +1,16 @@
+# golang image
 FROM golang:latest
 
+# golang image 的 GOPATH 为：/go
 WORKDIR /go/src/github.com/xiaosongfu/link
 
+# 复制当前目录下的文件到 WORKDIR
 COPY . .
 
-# install and run dep
-# RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-RUN go get -u github.com/golang/dep/cmd/dep
-RUN dep ensure
+# install dep and then run it
+RUN go get -u github.com/golang/dep/cmd/dep && dep ensure
 
-# build
-RUN go clean
-RUN go install
+# clean and build
+RUN go clean && go install
 
 CMD ["link"]
