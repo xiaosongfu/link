@@ -64,6 +64,8 @@ func addLink(writer http.ResponseWriter, request *http.Request) {
 	}
 	link.Url = request.PostForm.Get("url")
 	link.Tag = request.PostForm.Get("tag")
+	// 获取网页 title
+	link.Title, _ = QueryLinkTitle(link.Url)
 	// 执行插入
 	_, err = link.InsertLink()
 	resp := data.BasicResponse{}

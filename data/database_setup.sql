@@ -13,6 +13,7 @@ CREATE TABLE `link`.`category` (
 CREATE TABLE `link`.`link` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(200) NOT NULL,
+  `title` varchar(200) NOT NULL,
   `category_id` int(11) NOT NULL DEFAULT '1',
   `tag` varchar(200),
   PRIMARY KEY (`id`),
@@ -25,3 +26,7 @@ CREATE TABLE `link`.`link` (
 #------ 初始化 ------
 # 初始化 "未分类" 类别
 INSERT INTO `link`.`category` (category_id,category_name) VALUES (1, "未分类");
+
+#------ 版本更新 ------
+# 为 url 表添加 title 字段
+ALTER TABLE `link`.`link` ADD title VARCHAR(200) NOT NULL;

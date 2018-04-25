@@ -4,6 +4,7 @@ package data
 type Link struct {
 	Id         int    `json:"id"`
 	Url        string `json:"url"`
+	Title      string `json:"title"`
 	CategoryId int    `json:"categoryId"`
 	Tag        string `json:"tag"`
 }
@@ -13,7 +14,7 @@ const DefaultCategoryId int = 1
 
 // 添加 link
 func (link *Link) InsertLink() (insertId int64, err error) {
-	sqlStmt := "INSERT INTO link (url,category_id,tag) VALUES (?,?,?)"
+	sqlStmt := "INSERT INTO link (url,title,category_id,tag) VALUES (?,?,?,?)"
 	stmt, err := Db.Prepare(sqlStmt)
 	if err != nil {
 		return
@@ -21,7 +22,7 @@ func (link *Link) InsertLink() (insertId int64, err error) {
 
 	defer stmt.Close()
 
-	result, err := stmt.Exec(link.Url, link.CategoryId, link.Tag)
+	result, err := stmt.Exec(link.Url, link.Title, link.CategoryId, link.Tag)
 	if err != nil {
 		return
 	}
@@ -32,7 +33,7 @@ func (link *Link) InsertLink() (insertId int64, err error) {
 
 // 获取所有 link
 func SelectLinks() (links []Link, err error) {
-	sqlStmt := "SELECT id,url,category_id,tag FROM link"
+	sqlStmt := "SELECT id,url,title,category_id,tag FROM link"
 	stmt, err := Db.Prepare(sqlStmt)
 	if err != nil {
 		return
@@ -46,7 +47,7 @@ func SelectLinks() (links []Link, err error) {
 
 	for rows.Next() {
 		link := Link{}
-		if err = rows.Scan(&link.Id, &link.Url, &link.CategoryId, &link.Tag); err != nil {
+		if err = rows.Scan(&link.Id, &link.Url, &link.Title, &link.CategoryId, &link.Tag); err != nil {
 			return
 		}
 		links = append(links, link)
@@ -56,7 +57,7 @@ func SelectLinks() (links []Link, err error) {
 
 // 根据 categoryId 获取 link
 func SelectLinksByCategoryId(categoryId int) (links []Link, err error) {
-	sqlStmt := "SELECT id,url,category_id,tag FROM link WHERE category_id=?"
+	sqlStmt := "SELECT id,url,title,category_id,tag FROM link WHERE category_id=?"
 	stmt, err := Db.Prepare(sqlStmt)
 	if err != nil {
 		return
@@ -70,7 +71,7 @@ func SelectLinksByCategoryId(categoryId int) (links []Link, err error) {
 
 	for rows.Next() {
 		link := Link{}
-		if err = rows.Scan(&link.Id, &link.Url, &link.CategoryId, &link.Tag); err != nil {
+		if err = rows.Scan(&link.Id, &link.Url, &link.Title, &link.CategoryId, &link.Tag); err != nil {
 			return
 		}
 		links = append(links, link)
