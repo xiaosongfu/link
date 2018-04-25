@@ -13,21 +13,22 @@ func addCategory(writer http.ResponseWriter, request *http.Request) {
 	// 获取请求参数
 	var category data.Category
 	var err error
+	resp := data.BasicResponse{}
 	category.CategoryId, err = strconv.Atoi(request.PostFormValue("categoryId"))
 	if err != nil { // 如果没有传 categoryId 或为 ""，则直接返回并提示错误
-		writer.Write([]byte(err.Error()))
-		return
-	}
-	category.CategoryName = request.PostFormValue("categoryName")
-	// 执行插入
-	_, err = category.InsertCategory()
-	resp := data.BasicResponse{}
-	if err != nil {
 		resp.Code = data.ResponseCodeFailed
 		resp.Message = err.Error()
 	} else {
-		resp.Code = data.ResponseCodeSuccess
-		resp.Message = "add category success."
+		category.CategoryName = request.PostFormValue("categoryName")
+		// 执行插入
+		_, err = category.InsertCategory()
+		if err != nil {
+			resp.Code = data.ResponseCodeFailed
+			resp.Message = err.Error()
+		} else {
+			resp.Code = data.ResponseCodeSuccess
+			resp.Message = "add category success."
+		}
 	}
 	writer.Header().Set("Content-Type", "application/json")
 	jsonResp, _ := json.Marshal(resp)
