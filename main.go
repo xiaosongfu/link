@@ -1,16 +1,19 @@
 package main
 
-import "net/http"
+import (
+	"net/http"
+	"github.com/xiaosongfu/link/route"
+)
 
 func main() {
 	// 配置路由
 	// --> category
-	http.HandleFunc("/api/v1/addCategory", addCategory)
-	http.HandleFunc("/api/v1/getCategorys", getCategorys)
+	http.HandleFunc("/api/v1/addCategory", route.AddCategory)
+	http.HandleFunc("/api/v1/getCategorys", route.GetCategorys)
 	// --> link
-	http.HandleFunc("/api/v1/addLink", addLink)
-	http.HandleFunc("/api/v1/getLinks", getLinks)
-	http.HandleFunc("/api/v1/getLinksByCategoryId", getLinksByCategoryId)
+	http.HandleFunc("/api/v1/addLink", route.AddLink)
+	http.HandleFunc("/api/v1/getLinks", route.GetLinks)
+	http.HandleFunc("/api/v1/getLinksByCategoryId", route.GetLinksByCategoryId)
 
 	// 启动服务
 	err := http.ListenAndServe(":1205", nil)

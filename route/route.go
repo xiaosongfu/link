@@ -1,14 +1,15 @@
-package main
+package route
 
 import (
 	"net/http"
 	"strconv"
 
 	"github.com/xiaosongfu/link/data"
+	"github.com/xiaosongfu/link/util"
 )
 
 // 添加 category
-func addCategory(writer http.ResponseWriter, request *http.Request) {
+func AddCategory(writer http.ResponseWriter, request *http.Request) {
 	// 获取请求参数
 	var category data.Category
 	var err error
@@ -18,15 +19,15 @@ func addCategory(writer http.ResponseWriter, request *http.Request) {
 	if err != nil { // 如果没有传 categoryId 或为 ""，则直接返回并提示错误
 		resp.Code = data.ResponseCodeFailed
 		resp.Message = "categoryId is not correct"
-		WriteJsonResponse(writer, resp)
+		util.WriteJsonResponse(writer, resp)
 		return
 	}
 	// 解析并判断 categoryName
 	category.CategoryName = request.PostFormValue("categoryName")
-	if StringIsEmpty(category.CategoryName) {
+	if util.StringIsEmpty(category.CategoryName) {
 		resp.Code = data.ResponseCodeFailed
 		resp.Message = "category is empty"
-		WriteJsonResponse(writer, resp)
+		util.WriteJsonResponse(writer, resp)
 		return
 	}
 	// 执行插入
@@ -38,11 +39,11 @@ func addCategory(writer http.ResponseWriter, request *http.Request) {
 		resp.Code = data.ResponseCodeSuccess
 		resp.Message = "add category success"
 	}
-	WriteJsonResponse(writer, resp)
+	util.WriteJsonResponse(writer, resp)
 }
 
 // 获取所有 category
-func getCategorys(writer http.ResponseWriter, request *http.Request) {
+func GetCategorys(writer http.ResponseWriter, request *http.Request) {
 	// 执行查询
 	categorys, err := data.SelectCategorys()
 	categoryListResp := data.CategoryListResponse{}
@@ -54,11 +55,11 @@ func getCategorys(writer http.ResponseWriter, request *http.Request) {
 		categoryListResp.Message = "get category success"
 		categoryListResp.Data = categorys
 	}
-	WriteJsonResponse(writer, categoryListResp)
+	util.WriteJsonResponse(writer, categoryListResp)
 }
 
 // 添加 link
-func addLink(writer http.ResponseWriter, request *http.Request) {
+func AddLink(writer http.ResponseWriter, request *http.Request) {
 	// 解析请求参数
 	request.ParseForm()
 	// 获取请求参数
@@ -67,10 +68,10 @@ func addLink(writer http.ResponseWriter, request *http.Request) {
 	var err error
 	// 解析并判断 url
 	link.Url = request.PostForm.Get("url")
-	if !IsCorrectUrl(link.Url) {
+	if !util.IsCorrectUrl(link.Url) {
 		resp.Code = data.ResponseCodeFailed
 		resp.Message = "url is not correct"
-		WriteJsonResponse(writer, resp)
+		util.WriteJsonResponse(writer, resp)
 		return
 	}
 	// 解析并判断 categoryId
@@ -81,7 +82,7 @@ func addLink(writer http.ResponseWriter, request *http.Request) {
 	// 获取 tag
 	link.Tag = request.PostForm.Get("tag")
 	// 获取网页 title
-	link.Title, _ = QueryLinkTitle(link.Url)
+	link.Title, _ = util.QueryLinkTitle(link.Url)
 	// 执行插入
 	_, err = link.InsertLink()
 	if err != nil {
@@ -91,11 +92,11 @@ func addLink(writer http.ResponseWriter, request *http.Request) {
 		resp.Code = data.ResponseCodeSuccess
 		resp.Message = "add link success"
 	}
-	WriteJsonResponse(writer, resp)
+	util.WriteJsonResponse(writer, resp)
 }
 
 // 获取所有 link
-func getLinks(writer http.ResponseWriter, request *http.Request) {
+func GetLinks(writer http.ResponseWriter, request *http.Request) {
 	// 开始查询
 	links, err := data.SelectLinks()
 	linkListResp := data.LinkListResponse{}
@@ -107,11 +108,11 @@ func getLinks(writer http.ResponseWriter, request *http.Request) {
 		linkListResp.Message = "get category success"
 		linkListResp.Data = links
 	}
-	WriteJsonResponse(writer, linkListResp)
+	util.WriteJsonResponse(writer, linkListResp)
 }
 
 // 根据 categoryId 获取 link
-func getLinksByCategoryId(writer http.ResponseWriter, request *http.Request) {
+func GetLinksByCategoryId(writer http.ResponseWriter, request *http.Request) {
 	// 解析请求参数
 	request.ParseForm()
 	// 获取请求参数
@@ -122,7 +123,7 @@ func getLinksByCategoryId(writer http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		linkListResp.Code = data.ResponseCodeFailed
 		linkListResp.Message = err.Error()
-		WriteJsonResponse(writer, linkListResp)
+		util.WriteJsonResponse(writer, linkListResp)
 		return
 	}
 	// 开始查询
@@ -135,5 +136,5 @@ func getLinksByCategoryId(writer http.ResponseWriter, request *http.Request) {
 		linkListResp.Message = "get category success"
 		linkListResp.Data = links
 	}
-	WriteJsonResponse(writer, linkListResp)
+	util.WriteJsonResponse(writer, linkListResp)
 }
