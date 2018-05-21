@@ -1,0 +1,28 @@
+# 环境配置,后续不同环境有不同配置项时,需要使用标识
+env="test"
+#env="prod"
+
+# 服务器配置
+[server]
+    [server.test]
+    addr = ":1205"
+    [server.prod]
+    addr = ":1205"
+
+# 数据库配置
+[database]
+    [database.test]
+    driverName="mysql"
+    host="192.168.160.3"
+    port="43306"
+    database="link"
+    userName="root"
+    password="link"
+
+    [database.prod]
+    driverName="mysql"
+    host="120.77.47.141"
+    port="43306"
+    database="link"
+    userName="root"
+    password="link"

@@ -1,4 +1,4 @@
-package main
+package handlers
 
 import (
 	"log"
@@ -6,12 +6,12 @@ import (
 	"time"
 )
 
-func logger(h http.HandlerFunc) http.HandlerFunc {
+func Logger(loggerHandler http.HandlerFunc) http.HandlerFunc {
 	return http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
 		// 开始时间
 		start := time.Now()
 
-		h.ServeHTTP(writer, request)
+		loggerHandler.ServeHTTP(writer, request)
 
 		// 打印日志
 		log.Printf(
