@@ -18,7 +18,7 @@ func AddCategory(writer http.ResponseWriter, request *http.Request) {
 	category.CategoryId, err = strconv.Atoi(request.PostFormValue("categoryId"))
 	if err != nil { // 如果没有传 categoryId 或为 ""，则直接返回并提示错误
 		resp.Code = data.ResponseCodeFailed
-		resp.Message = "categoryId is not correct"
+		resp.Message = "category id is not correct"
 		util.WriteJsonResponse(writer, resp)
 		return
 	}
@@ -26,7 +26,7 @@ func AddCategory(writer http.ResponseWriter, request *http.Request) {
 	category.CategoryName = request.PostFormValue("categoryName")
 	if util.StringIsEmpty(category.CategoryName) {
 		resp.Code = data.ResponseCodeFailed
-		resp.Message = "category is empty"
+		resp.Message = "category name is empty"
 		util.WriteJsonResponse(writer, resp)
 		return
 	}
@@ -105,7 +105,7 @@ func GetLinks(writer http.ResponseWriter, request *http.Request) {
 		linkListResp.Message = err.Error()
 	} else {
 		linkListResp.Code = data.ResponseCodeSuccess
-		linkListResp.Message = "get category success"
+		linkListResp.Message = "get link success"
 		linkListResp.Data = links
 	}
 	util.WriteJsonResponse(writer, linkListResp)
@@ -133,7 +133,7 @@ func GetLinksByCategoryId(writer http.ResponseWriter, request *http.Request) {
 		linkListResp.Message = err.Error()
 	} else {
 		linkListResp.Code = data.ResponseCodeSuccess
-		linkListResp.Message = "get category success"
+		linkListResp.Message = "get link success"
 		linkListResp.Data = links
 	}
 	util.WriteJsonResponse(writer, linkListResp)
