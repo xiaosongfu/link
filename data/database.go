@@ -3,15 +3,16 @@ package data
 import (
 	"database/sql"
 
+	"log"
+
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/golang/glog"
 	"github.com/xiaosongfu/link/config"
 )
 
 var Db *sql.DB
 
 func init() {
-	glog.Infoln("database connecting ...")
+	log.Println("database connecting ...")
 
 	database := config.Conf.Database[config.Conf.Env]
 	var err error
@@ -25,5 +26,5 @@ func init() {
 		panic(err)
 	}
 
-	glog.Infoln("database connect success!")
+	log.Println("database connect success!")
 }

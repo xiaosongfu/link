@@ -1,15 +1,17 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
-	"github.com/golang/glog"
 	"github.com/xiaosongfu/link/config"
 	"github.com/xiaosongfu/link/handlers"
 )
 
 func main() {
-	glog.Infoln("server starting...")
+	// 静态文件服务器
+	fileServer := http.FileServer(http.Dir("web/public"))
+	http.Handle("/static/", http.StripPrefix("/static/", fileServer))
 
 	// 配置路由
 	// --> category
@@ -20,12 +22,15 @@ func main() {
 	http.HandleFunc("/api/v1/getLinks", handlers.Logger(handlers.GetLinks))
 	http.HandleFunc("/api/v1/getLinksByCategoryId", handlers.Logger(handlers.GetLinksByCategoryId))
 
-	// 启动服务
+	// 获取配置
 	addr := config.Conf.Server[config.Conf.Env].Addr
+
+	// 打印日志
+	log.Println("server started,and listening on 0.0.0.0" + addr)
+
+	// 启动服务
 	err := http.ListenAndServe(addr, nil)
 	if err != nil {
 		panic(err)
 	}
-
-	glog.Infoln("server started,and listening on " + addr)
 }

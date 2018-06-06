@@ -1,12 +1,13 @@
 package config
 
 import (
+	"log"
+
 	"github.com/BurntSushi/toml"
-	"github.com/golang/glog"
 )
 
 type Config struct {
-	Env string
+	Env      string
 	Server   map[string]Server
 	Database map[string]Database
 }
@@ -29,11 +30,11 @@ const configFile = "config/config.toml"
 var Conf Config
 
 func init() {
-	glog.Infoln("start read config info ...")
+	log.Println("start read config info ...")
 
 	if _, err := toml.DecodeFile(configFile, &Conf); err != nil {
 		panic(err)
 	}
 
-	glog.Infoln("read config info success.")
+	log.Println("read config info success.")
 }

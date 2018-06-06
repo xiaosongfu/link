@@ -6,7 +6,7 @@ import (
 	"regexp"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/pkg/errors"
+	"errors"
 )
 
 const UnNamedTitle = "未命名"
