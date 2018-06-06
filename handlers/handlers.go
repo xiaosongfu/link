@@ -90,7 +90,7 @@ func AddLink(writer http.ResponseWriter, request *http.Request) {
 		resp.Message = err.Error()
 	} else {
 		resp.Code = data.ResponseCodeSuccess
-		resp.Message = "add link success"
+		resp.Message = "add link success.title: " + link.Title
 	}
 	util.WriteJsonResponse(writer, resp)
 }

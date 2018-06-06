@@ -33,7 +33,7 @@ func (link *Link) InsertLink() (insertId int64, err error) {
 
 // 获取所有 link
 func SelectLinks() (links []Link, err error) {
-	sqlStmt := "SELECT id,url,title,category_id,tag FROM link ORDER BY id ASC"
+	sqlStmt := "SELECT id,url,title,category_id,tag FROM link ORDER BY id DESC"
 	stmt, err := Db.Prepare(sqlStmt)
 	if err != nil {
 		return
@@ -57,7 +57,7 @@ func SelectLinks() (links []Link, err error) {
 
 // 根据 categoryId 获取 link
 func SelectLinksByCategoryId(categoryId int) (links []Link, err error) {
-	sqlStmt := "SELECT id,url,title,category_id,tag FROM link WHERE category_id=? ORDER BY id ASC"
+	sqlStmt := "SELECT id,url,title,category_id,tag FROM link WHERE category_id=? ORDER BY id DESC"
 	stmt, err := Db.Prepare(sqlStmt)
 	if err != nil {
 		return

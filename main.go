@@ -14,6 +14,9 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", fileServer))
 
 	// 配置路由
+	// --> 首页
+	http.HandleFunc("/", handlers.Logger(handlers.Index))
+
 	// --> category
 	http.HandleFunc("/api/v1/addCategory", handlers.Logger(handlers.AddCategory))
 	http.HandleFunc("/api/v1/getCategorys", handlers.Logger(handlers.GetCategorys))
