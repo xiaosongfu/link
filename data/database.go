@@ -6,7 +6,7 @@ import (
 	"log"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/xiaosongfu/link/config"
+	"ffll.fun/link/config"
 )
 
 var Db *sql.DB

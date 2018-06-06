@@ -4,8 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/xiaosongfu/link/config"
-	"github.com/xiaosongfu/link/handlers"
+	"ffll.fun/link/config"
+	"ffll.fun/link/handlers"
 )
 
 func main() {

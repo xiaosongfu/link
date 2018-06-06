@@ -2,7 +2,7 @@
 FROM golang:latest
 
 # golang image 的 GOPATH 为：/go
-WORKDIR /go/src/github.com/xiaosongfu/link
+WORKDIR /go/src/ffll.fun/link
 
 # 复制当前目录下的文件到 WORKDIR
 COPY . .

@@ -4,7 +4,7 @@ import (
 	"testing"
 	"net/http/httptest"
 	"net/http"
-	"github.com/xiaosongfu/link/data"
+	"ffll.fun/link/data"
 	"encoding/json"
 )
 

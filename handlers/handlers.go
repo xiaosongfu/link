@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/xiaosongfu/link/data"
-	"github.com/xiaosongfu/link/util"
+	"ffll.fun/link/data"
+	"ffll.fun/link/util"
 )
 
 // 添加 category

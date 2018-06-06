@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"net/http"
-	"github.com/xiaosongfu/link/data"
+	"ffll.fun/link/data"
 	"html/template"
 )
 
