@@ -1,11 +1,11 @@
 package handlers
 
 import (
-	"testing"
-	"net/http/httptest"
-	"net/http"
-	"ffll.fun/link/data"
 	"encoding/json"
+	"ffll.fun/link/data"
+	"net/http"
+	"net/http/httptest"
+	"testing"
 )
 
 func TestGetLinksByCategoryId(t *testing.T) {

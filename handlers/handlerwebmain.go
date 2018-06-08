@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"net/http"
 	"ffll.fun/link/data"
 	"html/template"
+	"net/http"
 )
 
 func Index(writer http.ResponseWriter, request *http.Request) {
