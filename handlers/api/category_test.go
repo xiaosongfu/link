@@ -1,11 +1,12 @@
-package handlers
+package api
 
 import (
 	"encoding/json"
-	"ffll.fun/link/data"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"ffll.fun/link/handlers"
 )
 
 func TestGetLinksByCategoryId(t *testing.T) {
@@ -25,7 +26,7 @@ func TestGetLinksByCategoryId(t *testing.T) {
 	}
 
 	// 检测返回的数据
-	var res = data.BasicResponse{}
+	var res = handlers.BasicResponse{}
 
 	json.Unmarshal(responseRecorder.Body.Bytes(), &res)
 	t.Log(res)

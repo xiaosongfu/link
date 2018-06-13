@@ -7,3 +7,18 @@
 ```
 goreporter -p ./ -r ./goreport -f html
 ```
+
+> 交叉编译命令
+```
+GOOS=linux GOARCH=amd64 go build
+
+GOOS：386、amd64、arm
+GOARCH：darwin、freebsd、linux、windows
+```
+
+> docker
+```shell
+docker build -t link:1.1.0 -f Dockerfile2 .
+
+docker run -p 12054:1205 -d link:1.1.0
+```

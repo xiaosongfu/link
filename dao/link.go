@@ -1,12 +1,23 @@
-package data
+package dao
+
+import "ffll.fun/link/database"
 
 // Link struct
+//
+// Link struct 的定义.
+// 写点什么注释好呢
+// swagger:model Link
 type Link struct {
-	Id         int    `json:"id"`
-	Url        string `json:"url"`
-	Title      string `json:"title"`
-	CategoryId int    `json:"categoryId"`
-	Tag        string `json:"tag"`
+	// ID
+	Id int `json:"id"`
+	// 网页链接
+	Url string `json:"url"`
+	// 网页标题
+	Title string `json:"title"`
+	// 类别 ID
+	CategoryId int `json:"categoryId"`
+	// 标签
+	Tag string `json:"tag"`
 }
 
 // category_id 默认值为"未分类",即是 1
@@ -15,7 +26,7 @@ const DefaultCategoryId int = 1
 // 添加 link
 func (link *Link) InsertLink() (insertId int64, err error) {
 	sqlStmt := "INSERT INTO link (url,title,category_id,tag) VALUES (?,?,?,?)"
-	stmt, err := Db.Prepare(sqlStmt)
+	stmt, err := database.Db.Prepare(sqlStmt)
 	if err != nil {
 		return
 	}
@@ -34,7 +45,7 @@ func (link *Link) InsertLink() (insertId int64, err error) {
 // 获取所有 link
 func SelectLinks() (links []Link, err error) {
 	sqlStmt := "SELECT id,url,title,category_id,tag FROM link ORDER BY id DESC"
-	stmt, err := Db.Prepare(sqlStmt)
+	stmt, err := database.Db.Prepare(sqlStmt)
 	if err != nil {
 		return
 	}
@@ -58,7 +69,7 @@ func SelectLinks() (links []Link, err error) {
 // 根据 categoryId 获取 link
 func SelectLinksByCategoryId(categoryId int) (links []Link, err error) {
 	sqlStmt := "SELECT id,url,title,category_id,tag FROM link WHERE category_id=? ORDER BY id DESC"
-	stmt, err := Db.Prepare(sqlStmt)
+	stmt, err := database.Db.Prepare(sqlStmt)
 	if err != nil {
 		return
 	}

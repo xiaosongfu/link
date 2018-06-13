@@ -1,16 +1,25 @@
-package data
+package dao
+
+import "ffll.fun/link/database"
 
 // Category struct
+//
+// Category struct 的定义.
+// 写点什么注释好呢
+// swagger:model Category
 type Category struct {
-	Id           int    `json:"id"`
-	CategoryId   int    `json:"categoryId"`
+	// ID
+	Id int `json:"id"`
+	// 类别 ID
+	CategoryId int `json:"categoryId"`
+	// 类别名称
 	CategoryName string `json:"categoryName"`
 }
 
 // 插入 category
 func (category *Category) InsertCategory() (insertId int64, err error) {
 	sqlStmt := "INSERT INTO category (category_id,category_name) VALUES (?,?)"
-	stmt, err := Db.Prepare(sqlStmt)
+	stmt, err := database.Db.Prepare(sqlStmt)
 	if err != nil {
 		return
 	}
@@ -28,7 +37,7 @@ func (category *Category) InsertCategory() (insertId int64, err error) {
 // 获取所有 category
 func SelectCategorys() (categorys []Category, err error) {
 	sqlStmt := "SELECT category_id,category_name FROM category"
-	stmt, err := Db.Prepare(sqlStmt)
+	stmt, err := database.Db.Prepare(sqlStmt)
 	if err != nil {
 		return
 	}

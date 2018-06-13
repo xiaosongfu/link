@@ -1,14 +1,15 @@
-package handlers
+package web
 
 import (
-	"ffll.fun/link/data"
 	"html/template"
 	"net/http"
+
+	"ffll.fun/link/service"
 )
 
 func Index(writer http.ResponseWriter, request *http.Request) {
 	// 开始查询
-	links, err := data.SelectLinks()
+	links, err := service.GetLinks()
 	if err != nil {
 		panic(err)
 	}
