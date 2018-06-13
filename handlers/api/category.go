@@ -16,6 +16,16 @@ type CategoryListResponse struct {
 	Data []dao.Category `json:"data"`
 }
 
+// ---------------------------------------------------------------
+
+// 注册路由
+func RegisterCategoryRoutes() {
+	http.HandleFunc("/api/v1/addCategory", handlers.Logger(AddCategory))
+	http.HandleFunc("/api/v1/getCategorys", handlers.Logger(GetCategorys))
+}
+
+// ----------------------------------------------------------------
+
 // 添加 category
 //
 // swagger:route POST /api/v1/addCategory category AddCategoryRequest

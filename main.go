@@ -27,7 +27,6 @@ import (
 	"net/http"
 
 	"ffll.fun/link/config"
-	"ffll.fun/link/handlers"
 	"ffll.fun/link/handlers/api"
 	"ffll.fun/link/handlers/web"
 	_ "ffll.fun/link/swagger"
@@ -39,16 +38,19 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", fileServer))
 
 	// 配置路由
-	// --> 首页
-	http.HandleFunc("/", handlers.Logger(web.Index))
-
-	// --> category
-	http.HandleFunc("/api/v1/addCategory", handlers.Logger(api.AddCategory))
-	http.HandleFunc("/api/v1/getCategorys", handlers.Logger(api.GetCategorys))
-	// --> link
-	http.HandleFunc("/api/v1/addLink", handlers.Logger(api.AddLink))
-	http.HandleFunc("/api/v1/getLinks", handlers.Logger(api.GetLinks))
-	http.HandleFunc("/api/v1/getLinksByCategoryId", handlers.Logger(api.GetLinksByCategoryId))
+	web.RegisterIndexRoutes()    // --> 首页
+	api.RegisterCategoryRoutes() // --> category
+	api.RegisterLinkRoutes()     // --> link
+	//// --> 首页
+	//http.HandleFunc("/", handlers.Logger(web.Index))
+	//
+	//// --> category
+	//http.HandleFunc("/api/v1/addCategory", handlers.Logger(api.AddCategory))
+	//http.HandleFunc("/api/v1/getCategorys", handlers.Logger(api.GetCategorys))
+	//// --> link
+	//http.HandleFunc("/api/v1/addLink", handlers.Logger(api.AddLink))
+	//http.HandleFunc("/api/v1/getLinks", handlers.Logger(api.GetLinks))
+	//http.HandleFunc("/api/v1/getLinksByCategoryId", handlers.Logger(api.GetLinksByCategoryId))
 
 	// 获取配置
 	addr := config.Conf.Server[config.Conf.Env].Addr

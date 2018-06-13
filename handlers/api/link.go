@@ -16,6 +16,17 @@ type LinkListResponse struct {
 	Data []dao.Link `json:"data"`
 }
 
+// ---------------------------------------------------------------
+
+// 注册路由
+func RegisterLinkRoutes() {
+	http.HandleFunc("/api/v1/addLink", handlers.Logger(AddLink))
+	http.HandleFunc("/api/v1/getLinks", handlers.Logger(GetLinks))
+	http.HandleFunc("/api/v1/getLinksByCategoryId", handlers.Logger(GetLinksByCategoryId))
+}
+
+// ----------------------------------------------------------------
+
 // 添加 link
 //
 // swagger:route POST /api/v1/addLink link AddLinkRequest
