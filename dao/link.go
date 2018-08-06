@@ -1,6 +1,6 @@
 package dao
 
-import "ffll.fun/link/database"
+import "xiaosongfu.com/link/database"
 
 // Link struct
 //

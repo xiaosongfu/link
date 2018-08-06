@@ -5,7 +5,7 @@ import (
 
 	"log"
 
-	"ffll.fun/link/config"
+	"xiaosongfu.com/link/config"
 	_ "github.com/go-sql-driver/mysql"
 )
 

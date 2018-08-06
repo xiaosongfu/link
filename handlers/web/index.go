@@ -4,8 +4,8 @@ import (
 	"html/template"
 	"net/http"
 
-	"ffll.fun/link/handlers"
-	"ffll.fun/link/service"
+	"xiaosongfu.com/link/handlers"
+	"xiaosongfu.com/link/service"
 )
 
 // 注册路由

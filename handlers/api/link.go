@@ -4,10 +4,10 @@ import (
 	"net/http"
 	"strconv"
 
-	"ffll.fun/link/dao"
-	"ffll.fun/link/handlers"
-	"ffll.fun/link/service"
-	"ffll.fun/link/util"
+	"xiaosongfu.com/link/dao"
+	"xiaosongfu.com/link/handlers"
+	"xiaosongfu.com/link/service"
+	"xiaosongfu.com/link/util"
 )
 
 // link 列表响应

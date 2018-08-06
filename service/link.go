@@ -1,7 +1,7 @@
 package service
 
 import (
-	"ffll.fun/link/dao"
+	"xiaosongfu.com/link/dao"
 )
 
 // 添加 link

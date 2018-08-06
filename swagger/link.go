@@ -1,6 +1,6 @@
 package swagger
 
-import "ffll.fun/link/dao"
+import "xiaosongfu.com/link/dao"
 
 // 添加 link 的请求参数定义 写点什么注释好呢
 // swagger:parameters AddLinkRequest

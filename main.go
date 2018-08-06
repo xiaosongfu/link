@@ -26,10 +26,10 @@ import (
 	"log"
 	"net/http"
 
-	"ffll.fun/link/config"
-	"ffll.fun/link/handlers/api"
-	"ffll.fun/link/handlers/web"
-	_ "ffll.fun/link/swagger"
+	"xiaosongfu.com/link/config"
+	"xiaosongfu.com/link/handlers/api"
+	"xiaosongfu.com/link/handlers/web"
+	_ "xiaosongfu.com/link/swagger"
 )
 
 func main() {
