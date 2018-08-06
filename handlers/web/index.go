@@ -4,8 +4,8 @@ import (
 	"html/template"
 	"net/http"
 
-	"xiaosongfu.com/link/handlers"
-	"xiaosongfu.com/link/service"
+	"go.xiaosongfu.com/link/handlers"
+	"go.xiaosongfu.com/link/service"
 )
 
 // 注册路由

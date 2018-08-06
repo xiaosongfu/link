@@ -4,10 +4,10 @@ import (
 	"net/http"
 	"strconv"
 
-	"xiaosongfu.com/link/dao"
-	"xiaosongfu.com/link/handlers"
-	"xiaosongfu.com/link/service"
-	"xiaosongfu.com/link/util"
+	"go.xiaosongfu.com/link/dao"
+	"go.xiaosongfu.com/link/handlers"
+	"go.xiaosongfu.com/link/service"
+	"go.xiaosongfu.com/link/util"
 )
 
 // category 列表响应

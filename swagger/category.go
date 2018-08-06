@@ -1,6 +1,6 @@
 package swagger
 
-import "xiaosongfu.com/link/dao"
+import "go.xiaosongfu.com/link/dao"
 
 // 添加 category 的请求参数定义 写点什么注释好呢
 // swagger:parameters AddCategoryRequest

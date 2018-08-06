@@ -1,6 +1,6 @@
 package dao
 
-import "xiaosongfu.com/link/database"
+import "go.xiaosongfu.com/link/database"
 
 // Link struct
 //

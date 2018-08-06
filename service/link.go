@@ -1,7 +1,7 @@
 package service
 
 import (
-	"xiaosongfu.com/link/dao"
+	"go.xiaosongfu.com/link/dao"
 )
 
 // 添加 link

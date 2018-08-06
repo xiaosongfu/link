@@ -26,10 +26,10 @@ import (
 	"log"
 	"net/http"
 
-	"xiaosongfu.com/link/config"
-	"xiaosongfu.com/link/handlers/api"
-	"xiaosongfu.com/link/handlers/web"
-	_ "xiaosongfu.com/link/swagger"
+	"go.xiaosongfu.com/link/config"
+	"go.xiaosongfu.com/link/handlers/api"
+	"go.xiaosongfu.com/link/handlers/web"
+	_ "go.xiaosongfu.com/link/swagger"
 )
 
 func main() {

@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"xiaosongfu.com/link/handlers"
+	"go.xiaosongfu.com/link/handlers"
 )
 
 func TestGetLinksByCategoryId(t *testing.T) {
