@@ -14,15 +14,15 @@ env="prod"
     [database.test]
     driverName="mysql"
     host="192.168.160.3"
-    port="43306"
+    port="13306"
     database="link"
     userName="root"
     password="link"
 
     [database.prod]
     driverName="mysql"
-    host="120.77.47.141"
-    port="43306"
+    host="117.48.200.231"
+    port="13306"
     database="link"
     userName="root"
     password="link"
